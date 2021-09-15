@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{{ url_for('static',filename='css/player.css') }}">
 {% endblock %}
 
+{% block js%}
+<script src="{{url_for('static' ,filename='js/player.js')}}"></script>
+{% endblock %}
+
 {% block content%}
 
 <div class="vidContainer">
