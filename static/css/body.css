@@ -1,0 +1,11 @@
+:root{
+    --bakcol1 : #272829;
+    --bakcol2 : #43455c;
+    --bakcol3 : #707793;
+    --textcol1 : #3bba9c;
+    --textcol2 : #FFFFFF;
+}   
+
+body{
+    background-color: var(--bakcol1) !important;
+}

@@ -1,0 +1,45 @@
+[
+    {
+        "name": "Death Note",
+        "Desc": "The story follows Light Yagami, a teen genius who discovers a mysterious notebook: the 'Death Note', which belonged to the Shinigami Ryuk, and grants the user the supernatural ability to kill anyone whose name is written in its pages.",
+        "No Seasons": 2,
+        "seasons": {
+            "1": {
+                "No episodes": 37,
+                "desc": "Season Information here .....................................................................................",
+                "episodes": {
+                    "1": {
+                        "name": "Rebirth",
+                        "src": ""
+                    },
+                    "2": {
+                        "name": "Conferntation",
+                        "src": "https://drive.google.com/file/d/1hX2P6zEug9H-jrFO-3mo8_PU5P0dtod-/preview"
+                    },
+                    "11": {
+                        "name": "Assult",
+                        "src": "https://drive.google.com/file/d/1J1qTgiwN0Zpt1UvF7kAPytZiMqVSt9UZ/preview"
+                    }
+                }
+            },
+            "2": {
+                "No episodes": 10,
+                "desc": "Season Information here tooo ",
+                "episodes": {
+                    "1": {
+                        "name": "Rebirth",
+                        "src": ""
+                    },
+                    "2": {
+                        "name": "Conferntation",
+                        "src": "https://drive.google.com/file/d/1hX2P6zEug9H-jrFO-3mo8_PU5P0dtod-/preview"
+                    },
+                    "11": {
+                        "name": "Assult",
+                        "src": "https://drive.google.com/file/d/1J1qTgiwN0Zpt1UvF7kAPytZiMqVSt9UZ/preview"
+                    }
+                }
+            }
+        }
+    }
+]
