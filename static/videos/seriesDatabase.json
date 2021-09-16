@@ -5,24 +5,31 @@
         "No Seasons": 2,
         "seasons": {
             "1": {
+                "series name" : "Death Note",
+                "season number" : 1,
                 "No episodes": 37,
                 "desc": "Season Information here .....................................................................................",
                 "episodes": {
                     "1": {
+                        "episode number" : 1,
                         "name": "Rebirth",
                         "src": ""
                     },
                     "2": {
+                        "episode number" : 2,
                         "name": "Conferntation",
                         "src": "https://drive.google.com/file/d/1hX2P6zEug9H-jrFO-3mo8_PU5P0dtod-/preview"
                     },
                     "11": {
+                        "episode number" : 11,
                         "name": "Assult",
                         "src": "https://drive.google.com/file/d/1J1qTgiwN0Zpt1UvF7kAPytZiMqVSt9UZ/preview"
                     }
                 }
             },
             "2": {
+                "series name" : "Death Note",
+                "season number" : 2,
                 "No episodes": 10,
                 "desc": "Season Information here tooo ",
                 "episodes": {

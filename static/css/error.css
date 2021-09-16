@@ -1,0 +1,12 @@
+.error_box{
+    margin: auto;
+    width: 70%;
+    color: white;
+    text-align: center;
+    border: 4px solid white;
+    border-radius: 5px;
+}   
+
+.error_box > h3{
+    color: red;
+}

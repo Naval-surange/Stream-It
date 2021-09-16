@@ -1,0 +1,24 @@
+{% extends "header.html" %}
+{%block title %} Stream IT {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/episodes.css') }}">
+{% endblock %}
+
+{% block content%}
+
+<div class="grid-container">
+
+    {% for index in season['episodes'] %}
+
+    <div class="grid-item">
+        <a href=" {{ url_for('player', series_name=season['series name'] , season_number=season['season number'] , episode_index=index ) }} ">
+            <img class="thumbnail" src="{{url_for('static',filename='default/thumbnail3.png')}}" alt="thumbnail">
+            <div class="title">
+                <p>{{"Death Note - " + season['episodes'][index]["name"]}}</p>
+            </div>
+        </a>
+    </div>
+
+    {%endfor%}
+</div>
+{% endblock %}

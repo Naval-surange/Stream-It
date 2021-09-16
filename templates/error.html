@@ -1,0 +1,15 @@
+{% extends "header.html" %}
+{%block title %} Stream-It {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/error.css') }}">
+{% endblock %}
+
+{% block content%}
+
+<div class="error_box">
+    <h1> Oops!! Looks like you hit an error. </h1>
+    <h2> We are sorry for your inconvineance </h2>
+    <h3> error message : {{msg}}
+</div>
+
+{% endblock %}

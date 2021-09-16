@@ -1,0 +1,5 @@
+{
+  "html-css-class-completion.enableEmmetSupport": true,
+  "cSpell.enableFiletypes": ["!css", "!html", "!javascript"],
+  "emmet.includeLanguages": { "jinja-html": "html" }
+}

@@ -26,10 +26,9 @@ function update(sNo, data) {
 
   desc = document.getElementById("seasonDesc");
 
-
   desc.innerHTML = `
                    <div class="sNo">
-                       Season ${sNo}
+                      Season ${sNo}
                    </div>
                    Number of epsodes : ${data["seasons"][sNos]["No episodes"]}
                    <div class="sDesc">
@@ -37,3 +36,5 @@ function update(sNo, data) {
                    </div>
                   `;
 }
+
+function redirectToEpisodes() {}

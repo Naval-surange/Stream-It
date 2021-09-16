@@ -1,5 +1,5 @@
 {% extends "header.html" %}
-{%block title %} {{ video }} {% endblock %}
+{%block title %} Stream-It {{series_name}} {{episode['name']}} {% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/player.css') }}">
 {% endblock %}
@@ -8,9 +8,9 @@
 
 <div class="vidContainer">
     <iframe class="video" allow="fullscreen;"   
-        src="https://drive.google.com/file/d/1hX2P6zEug9H-jrFO-3mo8_PU5P0dtod-/preview"></iframe>
+        src={{episode["src"]}}></iframe>
     <div class="title">
-        Death Note - {{video}}
+        {{series_name}} {{episode['name']}} - {{season_number }}X{{episode['episode number']}}
     </div>
 </div>
 
