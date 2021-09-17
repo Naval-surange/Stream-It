@@ -1,14 +1,43 @@
 from flask import Flask, redirect, url_for, render_template, request
 import os
-from werkzeug.utils import html
 import json
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 
 app = Flask(__name__)
 
-db = json.load(open("./static/videos/seriesDatabase.json"))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///streamit.db'
+db = SQLAlchemy(app)
+
+# db = json.load(open("./static/videos/seriesDatabase.json"))
 # print(db)
 videos = []
+
+
+class Series(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String(30),nullable=False)
+    desc = db.Column(db.Text) 
+    publish_date = db.Column(db.DateTime,nullable = False,default=datetime.utcnow)
+    thumbnail = db.Column(db.String(20),nullable = False,default='default.jpg')
+    
+    Seasons = db.relationship('Seasons', backref='Series', lazy=True)
+    
+    def __repr__(self):
+        return f'Series({self.id}, {self.name}, {self.desc}, {self.publish_date}, {self.thumbnail})'
+
+class Seasons(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    number = db.Column(db.Integer)
+    publish_date = db.Column(db.DateTime,nullable = False,default=datetime.utcnow)
+    desc = db.Column(db.Text) 
+    
+    Series_id = db.Column(db.Integer,db.ForeignKey('series.id'),nullable = False)
+    
+    def __repr__(self):
+        return f'Seasons({self.id}, {self.number}, {self.publish_date}, {self.desc} )'
+    
 
 
 @app.route("/home")
