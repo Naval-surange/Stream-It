@@ -1,0 +1,100 @@
+{% extends "header.html" %} {%block title %} Home Page {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/season.css') }}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+{% endblock %}
+{% block js %}
+<script src="{{url_for('static' ,filename='js/season.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block content%}
+
+<!-- {% print(ser_data) %}
+{% print(ses_data) %} -->
+
+<div class="buffer"></div>
+<div class="container">
+	<div>
+		<h1 class="series-heading">{% print( ser_data["name"] ) %}</h1>
+
+		<div class="card">
+			<div class="card-body">
+				<p>
+					{%print(ser_data["desc"][:100])%}
+					<span id="dots">...</span>
+					<span id="more"> {%print(ser_data["desc"][100:])%} </span>
+				</p>
+			</div>
+		</div>
+
+		<div onclick="myFunction()" id="myBtn">Read More &#9660;</div>
+
+		<div class="seasons">
+			{% for i in range( ser_data["number_of_seasons"] ) %}
+
+			<div class="season_block" onclick="update({{ i+1 }}, {{ses_data|string }})">
+				{% print("Season " + (i+1)|string) %}
+			</div>
+
+			{%endfor%}
+		</div>
+
+	</div>
+
+	{% for i in range( ser_data["number_of_seasons"] ) %}
+	{% if i==0 %}
+	<div class="right visible" id={{'right' + (i+1)|string}}>
+		<div class="preview">
+			<img class="opaque" src="{{url_for('static',filename='default/thumbnail3.png')}}" />
+		</div>
+
+		<div class="bottom">
+			<div class="bottom-left">
+					<div class="sNo">Season {{ i+1 }} </div>
+					{% print("Number of epsodes : " + ses_data[(i+1)|string]["number_of_episodes"]|string ) %}
+					<div class="sDesc">{% print(ses_data[(i+1)|string]["desc"]) %}</div>
+			</div>
+
+			<div class="bottom-right">
+				<span class="helper"></span>
+				<a
+					onclick="window.location.href='{{ url_for('episodes', ser_id=ser_data['id'], ses_id = ses_data[(i+1)|string ]['id']) }}'; ">
+					
+					<img src="{{url_for('static',filename='default/play.png')}}" alt="" />
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+	{% else %}
+
+	<div class="right hidden" id={{'right' + (i+1)|string}}>
+		<div class="preview">
+			<img class="opaque" src="{{url_for('static',filename='default/thumbnail3.png')}}" />
+		</div>
+
+		<div class="bottom">
+			<div class="bottom-left">
+					<div class="sNo">Season {{ i+1 }} </div>
+					{% print("Number of epsodes : " + ses_data[(i+1)|string]["number_of_episodes"]|string ) %}
+					<div class="sDesc">{% print(ses_data[(i+1)|string]["desc"]) %}</div>
+			</div>
+
+			<div class="bottom-right">
+				<span class="helper"></span>
+				<a
+					onclick="window.location.href='{{ url_for('episodes', ser_id=ser_data['id'], ses_id = ses_data[(i+1)|string ]['id']) }}'; ">
+					
+					<img src="{{url_for('static',filename='default/play.png')}}" alt="" />
+				</a>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	{% endfor %}
+
+</div>
+
+{% endblock %}

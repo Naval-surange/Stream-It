@@ -1,0 +1,149 @@
+:root {
+  --bakcol1: #1c262a;
+  --bakcol2: #43455c;
+  --bakcol3: #707793;
+  --textcol1: #3bba9c;
+  --textcol2: #ffffff;
+}
+
+body {
+  background-color: var(--bakcol1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container:before{
+  content: none !important;
+}
+
+.container {
+  display: grid;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-template-columns: 1fr fit-content(50%);
+  grid-gap: 1em;
+  grid-auto-rows: minmax(350px,auto);
+  color: white;
+  overflow: hidden;
+}
+
+.container > div{
+  border: 2px solid white;
+}
+
+.series-heading{
+  text-align: center;
+}
+
+.card{
+  text-align: center;
+  margin: auto;
+  width: 90%;
+  border: 1px solid white;
+  border-radius: 8px;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+#myBtn {
+  margin: auto;
+  width: 30%;
+  text-align: center;
+
+  background-color: rgba(1, 1, 1, 0.0005);
+
+  border: 1px solid white;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding: 4px;
+  cursor: pointer;
+
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#more {
+  display: none;
+}
+
+.seasons {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.season_block {
+  width: 150px;
+  margin: 0 auto;
+  background-color: rgba(0, 68, 255, 0.83);
+  text-align: center;
+  padding: 6px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.season_block:hover,
+.season_block:focus {
+  background-color: rgba(0, 68, 255, 0.45);
+  cursor: pointer;
+}
+
+
+.preview {
+  display: inline-block;
+}
+
+.preview >img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.bottom{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.bottom-left{
+  margin-left: 5px;
+}
+
+.bottom-left >.sNo{
+  font-size: 20px;
+}
+
+.bottom-left > .sDesc{
+  text-align: center;
+  width: 90%;
+  border: 1px solid white;
+  border-radius: 8px;
+  /* margin-top: 5px; */
+  margin: 5px;
+  padding: 5px;
+}
+
+.bottom-right{
+  height: 100%;      /* Equals maximum image height */
+  white-space: nowrap; /* This is required unless you put the helper span closely near the img */
+  text-align: center;
+}
+
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.bottom-right > a> img{
+  vertical-align: middle;
+  width: 50%;
+}
+
+.bottom-right > a> img:hover{
+  cursor: pointer;
+}
+
+.hidden{
+  visibility: hidden;
+}

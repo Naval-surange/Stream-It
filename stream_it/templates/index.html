@@ -8,14 +8,16 @@
 
 <div class="grid-container">
 
-    {% for index in vids %}
-
+    {% for series in ser_list %}
+    
     <div class="grid-item">
-        <a href=" {{url_for('player',video=vids[index]['name'])}} ">
+        <a href=" {{ url_for('seasons' ,series_id=series.id ) }} ">
+
             <img class="thumbnail" src="{{url_for('static',filename='default/thumbnail3.png')}}" alt="thumbnail">
             <div class="title">
-                <p>{{"Death Note - " + vids[index]["name"]}}</p>
+                <p>{{ series.name}}</p>
             </div>
+
         </a>
     </div>
 
