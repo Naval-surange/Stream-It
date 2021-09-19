@@ -8,9 +8,11 @@
 
 <div class="vidContainer">
     <iframe class="video" allow="fullscreen;"   
-        src={{episode["src"]}}></iframe>
+        src={{episode.src}}></iframe>
     <div class="title">
-        {{series_name}} {{episode['name']}} - {{season_number }}X{{episode['episode number']}}
+        {{ser_name}} {{episode.name}} 
+        <br>
+        season : {{ses_no}} episode : {{episode.number}}
     </div>
 </div>
 

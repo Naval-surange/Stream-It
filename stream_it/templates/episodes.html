@@ -8,13 +8,13 @@
 
 <div class="grid-container">
 
-    {% for index in season['episodes'] %}
+    {% for episode in episodes %}
 
     <div class="grid-item">
-        <a href=" {{ url_for('player', series_name=season['series name'] , season_number=season['season number'] , episode_index=index ) }} ">
+        <a href=" {{ url_for('player', episode_id=episode.id) }} ">
             <img class="thumbnail" src="{{url_for('static',filename='default/thumbnail3.png')}}" alt="thumbnail">
             <div class="title">
-                <p>{{"Death Note - " + season['episodes'][index]["name"]}}</p>
+                <p>{{episode.name}}</p>
             </div>
         </a>
     </div>

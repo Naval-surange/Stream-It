@@ -42,8 +42,9 @@ def upload():
             desc = up_form.desc.data
             src = up_form.src.data
             new_episode = Episode(number = ep_no,name=ep_name,src=src,desc=desc,Season_id=ses)
-            print(new_episode)
-            flash(f'Episode was submitted successfully for Season {up_form.season.data} of {Series.query.get(up_form.series.data).name}!!' ,'success')
+            db.session.add(new_episode)
+            db.session.commit()
+            flash(f'Episode was submitted successfully for Season {Seasons.query.get(up_form.season.data).number} of {Series.query.get(up_form.series.data).name}!!' ,'success')
             return redirect(url_for('upload'))
         else:
             flash(f'Some validation failed episode not submitted successfully' ,'danger')
@@ -85,34 +86,22 @@ def episodes(ser_id, ses_id):
     flag = 0
     ser = Series.query.get(ser_id)
     ses = Seasons.query.get(ses_id)
+    episodes = ses.episodes
     
-    data = []
+    print(episodes)
     
-    if flag:
-        return render_template("error.html",msg="series not found!!")
-    else: 
-        return render_template("episodes.html", season=data)
+    return render_template("episodes.html", episodes=episodes)
 
 
-@app.route("/player/<series_name>/<season_number>/<episode_index>")
-def player(series_name,season_number,episode_index):
-    flag = 1
-    for ser in db:
-        if ser['name'] == series_name:
-            if int(season_number) > ser["No Seasons"]:
-                return render_template("error.html",msg = "season not found!!")
-            else:
-                season = ser['seasons'][season_number]
-                if int(episode_index) > season["No episodes"]:
-                    return render_template("error.html",msg = "episode not found!!")
-                else :
-                    episode = season["episodes"][episode_index]                
-                    flag = 0
-  
-    if flag:
-        return render_template("error.html",msg = "series not found!!")
-    else: 
-        return render_template("player.html", episode=episode, series_name=series_name,season_number=season_number)
+@app.route("/player/<episode_id>")
+def player(episode_id):
+    episode = Episode.query.get(episode_id)
+    ses = Seasons.query.get(episode.Season_id)
+    ser = Series.query.get(ses.Series_id)
+    ser_name = ser.name
+    ses_no = ses.number
+    
+    return render_template("player.html", episode=episode,ser_name=ser_name,ses_no=ses_no)
 
 @app.route("/error/<message>")
 def error(message):
