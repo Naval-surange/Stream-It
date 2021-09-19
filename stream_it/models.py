@@ -39,5 +39,5 @@ class Episode(db.Model):
     Season_id = db.Column(db.Integer,db.ForeignKey('seasons.id'),nullable = False)
     
     def __repr__(self):
-        return f'Seasons({self.id}, {self.number},{self.name}, {self.desc} ,{self.src})'
+        return f'Seasons({self.id}, {self.number},{self.name}, {self.desc} ,{self.Season_id},{self.src})'
   

@@ -13,12 +13,17 @@
                     "1": {
                         "episode number" : 1,
                         "name": "Rebirth",
-                        "src": ""
+                        "src": "https://drive.google.com/file/d/14e8U6zQAnui2U1Rlsq6zge-K2clD6Ock/preview"
                     },
                     "2": {
                         "episode number" : 2,
                         "name": "Conferntation",
                         "src": "https://drive.google.com/file/d/1hX2P6zEug9H-jrFO-3mo8_PU5P0dtod-/preview"
+                    },
+                    "3":{
+                        "episode number" : 3,
+                        "name" : "Dealings",
+                        "src" "" 
                     },
                     "11": {
                         "episode number" : 11,

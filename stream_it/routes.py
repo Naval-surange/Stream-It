@@ -1,10 +1,24 @@
 from stream_it.models import *
-from flask import redirect, url_for, render_template, request
+from flask import redirect, url_for, render_template, request, jsonify, flash
 from stream_it import app,db
+from stream_it.form import *
 import json
 # db = json.load(open("./static/videos/seriesDatabase.json"))
 videos = []
 
+
+def get_series_id(ser_name):
+    return Series.query.filter(Series.name==ser_name).first().id
+
+def get_season_id(s_no,ser_id):
+    series = Series.query.get(ser_id)
+    # print(series)
+    seasons = series.Seasons
+    for season in seasons:
+        if season.number == s_no:
+            required_season = season
+            break
+    return required_season.id
 
 
 @app.route("/home")
@@ -14,10 +28,41 @@ def home():
     return render_template("index.html", ser_list=ser_list)
 
 
-@app.route("/upload")
+@app.route("/upload",  methods=['GET','POST'])
 def upload():
-    return render_template("upload.html")
+    up_form = UploadForm()
+    
+    if request.method == 'POST':
+        if up_form.validate_on_submit():
+            
+            ser = up_form.series.data
+            ses = up_form.season.data
+            ep_no = up_form.epNo.data
+            ep_name = up_form.name.data
+            desc = up_form.desc.data
+            src = up_form.src.data
+            new_episode = Episode(number = ep_no,name=ep_name,src=src,desc=desc,Season_id=ses)
+            print(new_episode)
+            flash(f'Episode was submitted successfully for Season {up_form.season.data} of {Series.query.get(up_form.series.data).name}!!' ,'success')
+            return redirect(url_for('upload'))
+        else:
+            flash(f'Some validation failed episode not submitted successfully' ,'danger')
+            return redirect(url_for('upload'))
 
+    else:
+      return render_template("upload.html",form=up_form)
+
+@app.route('/getSeasons/<series_id>')
+def getSeasons(series_id):
+    seasons = Series.query.get(series_id).Seasons
+    sesArr = []
+    for ses in seasons:
+        sesObj = {}
+        sesObj['id'] = ses.id
+        sesObj['number'] = ses.number
+        sesObj['series'] = ses.Series_id
+        sesArr.append(sesObj)
+    return jsonify({'seasons':sesArr})
 
 @app.route("/season/<series_id>")
 def seasons(series_id):

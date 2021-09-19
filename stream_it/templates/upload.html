@@ -3,20 +3,139 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/upload.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% endblock %}
 
 {% block js %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
 <script src="{{url_for('static' ,filename='js/upload.js')}}"></script>
+
 {% endblock %}
 
 
 {% block content%}
-<div id="drop-zone">
-    Drop files here...
-    <div id="clickHere">
-        or click here..
-        <input type="file" name="file" id="file" />
-    </div>
+
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category,message in messages %}
+<div class="alert alert-{{category}} text-center">
+    {{message}}
 </div>
+{%endfor%}
+{%endif%}
+{%endwith%}
+
+<div class="d-flex justify-content-center">
+
+    <form action="{{url_for('upload')}}" method="POST">
+
+        {{ form.hidden_tag() }}
+
+        <div class="row g-3 align-items-center text-white">
+            <div class="col-auto">
+                <label class="col-form-label">Choose Series :</label>
+            </div>
+            <div class="col-auto">
+                {{ form.series(class="form-control") }}
+            </div>
+            <div class="col-auto">
+                <span id="passwordHelpInline" class="form-text">
+                    Must be out of available options !!
+                </span>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row g-3 align-items-center text-white">
+            <div class="col-auto">
+                <label class="col-form-label">Choose Season :</label>
+            </div>
+            <div class="col-auto">
+                {{ form.season(class="form-control") }}
+            </div>
+            <div class="col-auto">
+                <span id="passwordHelpInline" class="form-text">
+                    Must be out of available options !!
+                </span>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row g-3 align-items-center text-white">
+            <div class="col-auto">
+                <label class="col-form-label">Enter Episode number :</label>
+            </div>
+            <div class="col-auto">
+                {{form.epNo(class="form-control")}}
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row g-3 align-items-center text-white">
+            <div class="col-auto">
+                <label class="col-form-label">Enter Episode name :</label>
+            </div>
+            <div class="col-auto">
+                {{form.name(class="form-control")}}
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row g-3 align-items-center text-white">
+            <div class="col-auto">
+                <label class="col-form-label">Enter Description :</label>
+            </div>
+            <div class="col-auto">
+                {{form.desc(class="form-control")}}
+            </div>
+        </div>
+
+        <br>
+
+
+        <div class="row g-3 align-items-center text-white">
+            <div class="col-auto">
+                <label class="col-form-label">Enter source url:</label>
+            </div>
+            <div class="col-auto">
+                {{form.src(class="form-control")}}
+            </div>
+            <div class="col-auto">
+                <span id="passwordHelpInline" class="form-text">
+                    Must be a valid URL !!
+                </span>
+            </div>
+
+        </div>
+
+        <br>
+
+
+        <div class="row g-3 align-items-center text-white">
+            <div class="d-grid gap-2 col-1 mx-auto">
+                {{form.submit(class="btn btn-primary")}}
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
 
 {% endblock %}
