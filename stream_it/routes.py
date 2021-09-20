@@ -2,8 +2,7 @@ from stream_it.models import *
 from flask import redirect, url_for, render_template, request, jsonify, flash
 from stream_it import app,db
 from stream_it.form import *
-import json
-# db = json.load(open("./static/videos/seriesDatabase.json"))
+
 videos = []
 
 
